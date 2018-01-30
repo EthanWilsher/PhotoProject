@@ -24,10 +24,28 @@ public class IntArrayWorker
       for (int col = 0; col < matrix[0].length; col++)
       {
         total = total + matrix[row][col];
+        matrix[row][col] = total;
       }
     }
     return total;
   }
+  
+  public int getLargest()
+  {
+	  int total = 0;
+	  
+	  return total;
+  }
+  
+  public int getColTotal(int column)
+  {
+	  int colTotal = 0;
+	  
+	  for (int row = 0; row < matrix.length; row++)
+	  
+	  return colTotal;
+  }
+  
   
   /**
    * Method to return the total using a nested for-each loop
@@ -41,6 +59,7 @@ public class IntArrayWorker
       for (int item : rowArray)
       {
         total = total + item;
+        item = total;
       }
     }
     return total;

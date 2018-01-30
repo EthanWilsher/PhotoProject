@@ -119,6 +119,23 @@ public class Picture extends SimplePicture
     } 
   }
   
+  public void mirrorBottomTop()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  Pixel bottomPixel = null;
+	  Pixel topPixel = null;
+	  
+	  for(int col = 0; col < pixels[0].length; col++)
+	  {
+		  for (int row = 0; row < pixels[0].length / 2; row++)
+		  {
+			  bottomPixel = pixels[row][col];
+			  topPixel = pixels[row][col];
+			  bottomPixel.setColor(topPixel.getColor());
+		  }
+	  }
+  }
+  
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
   {
@@ -150,8 +167,7 @@ public class Picture extends SimplePicture
     * @param startRow the start row to copy to
     * @param startCol the start col to copy to
     */
-  public void copy(Picture fromPic, 
-                 int startRow, int startCol)
+  public void copy(Picture fromPic, int startRow, int startCol)
   {
     Pixel fromPixel = null;
     Pixel toPixel = null;
@@ -229,5 +245,52 @@ public class Picture extends SimplePicture
     beach.zeroBlue();
     beach.explore();
   }
+  
+  public void beardFilter(int startRow, int startCol)
+  {
+	  Pixel fromPixel = null;
+	  Pixel toPixel = null;
+	  Picture beard = new Picture("beard.jpeg");
+	  Pixel [][] toPixels = this.getPixels2D();
+	  Pixel [][] fromPixels = beard.getPixels2D();
+	  int fromRow = 0;
+	  for(int toRow = startRow; toRow < toPixels.length && fromRow < fromPixels.length; toRow++)
+	  {
+		  int fromCol = 0;
+		  for (int toCol = 0; toCol < toPixels[0].length && fromCol < fromPixels[0].length; toCol++)
+		  {
+			  fromPixel = fromPixels[fromRow][fromCol];
+			  toPixel = toPixels[toRow][toCol];
+			  if (!fromPixel.isTransparent())
+			  {
+				  toPixel.setRed(fromPixel.getRed());
+				  toPixel.setBlue(fromPixel.getBlue());
+				  toPixel.setGreen(fromPixel.getGreen());
+			  }
+			  fromCol++;
+		  }
+		  fromRow++;
+	  }
+
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
 } // this } is the end of class Picture, put all new methods before this

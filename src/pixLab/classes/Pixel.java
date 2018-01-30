@@ -146,6 +146,18 @@ public class Pixel
     return green;
   }
   
+  public void copy(Picture fromPic, int startRow, int startCol)
+  {
+	  //Finish this method by looking at others github
+  }
+  
+  public void beardFilter(int starRow, int startCol)
+  {
+	  //finish with github.
+  }
+  
+  
+  
   /**
    * Method to get the green value from a pixel represented as an int
    * @param value the color value as an int
@@ -364,6 +376,18 @@ public class Pixel
       " red=" + getRed() + 
       " green=" + getGreen() + 
       " blue=" + getBlue();
+  }
+  
+  public boolean isTransparent()
+  {
+	  boolean transparency = false;
+	  
+	  if (getAlpha() == 255 && getRed() == 0 && getGreen() == 0 && getBlue() == 0)
+	  {
+		  transparency = true;
+	  }
+	  
+	  return transparency;
   }
 
 }
