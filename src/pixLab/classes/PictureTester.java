@@ -17,6 +17,21 @@ public class PictureTester
     beach.zeroBlue();
     beach.explore();
   }
+  public static void testBeard()
+  {
+	  Picture beach = new Picture ("CucumberIsland.jpg");
+	  beach.explore();
+	  beach.beardFilter(beach.getHeight() / 2, beach.getWidth() / 2);
+	  beach.explore();
+  }
+  
+  public static void testGlitchFilter()
+  {
+	  Picture caterpillar = new Picture("Danny.jpg");
+	    caterpillar.explore();
+	    caterpillar.mirrorVertical();
+	    caterpillar.explore();
+  }
   
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
@@ -76,6 +91,8 @@ public class PictureTester
     //testFixUnderwater();
     testMirrorVertical();
     testMirrorBottomTop();
+    testBeard();
+    testGlitchFilter();
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();

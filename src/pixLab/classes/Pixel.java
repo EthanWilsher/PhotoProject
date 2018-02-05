@@ -382,7 +382,7 @@ public class Pixel
   {
 	  boolean transparency = false;
 	  
-	  if (getAlpha() == 255 && getRed() == 0 && getGreen() == 0 && getBlue() == 0)
+	  if (getAlpha() == 0 && getRed() == 0 && getGreen() == 0 && getBlue() == 0)
 	  {
 		  transparency = true;
 	  }
