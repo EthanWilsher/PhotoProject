@@ -19,18 +19,19 @@ public class PictureTester
   }
   public static void testBeard()
   {
-	  Picture beach = new Picture ("CucumberIsland.jpg");
+	  Picture beach = new Picture ("CumberLandIsland.jpg");
 	  beach.explore();
 	  beach.beardFilter(beach.getHeight() / 2, beach.getWidth() / 2);
 	  beach.explore();
   }
-  
-  public static void testGlitchFilter()
+ 
+  //this a test filter for the glitch filter.
+  public static void testGlitch()
   {
-	  Picture caterpillar = new Picture("Danny.jpg");
-	    caterpillar.explore();
-	    caterpillar.mirrorVertical();
-	    caterpillar.explore();
+	    Picture Danny = new Picture("Danny.jpg");
+	    Danny.explore();
+	    Danny.glitchArt();
+	    Danny.explore();
   }
   
   /** Method to test mirrorVertical */
@@ -82,17 +83,17 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
+//    testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
     //testFixUnderwater();
-    testMirrorVertical();
-    testMirrorBottomTop();
-    testBeard();
-    testGlitchFilter();
+//    testMirrorVertical();
+//    testMirrorBottomTop();
+//    testBeard();
+    testGlitch();
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();

@@ -136,6 +136,31 @@ public class Picture extends SimplePicture
 	  }
   }
   
+  public void glitchArt()
+  {
+	  Pixel [][] pixels = this.getPixels2D();
+	  int shiftAmount = (int) (.33 * pixels[0].length);
+	  int width = pixels[0].length;
+	  
+	  for (int row = 0; row < pixels.length; row++)
+	  {
+		  Color [] currentColors = new Color[pixels.length];
+		  
+		  for (int col = 0; col < pixels[0].length; col++)
+		  {
+			  currentColors[col] = pixels[row][col].getColor();	  
+		  }
+		  
+		  for (int col = 0; col < pixels[0].length; col++)
+		  {
+			  pixels[row][col].setColor(currentColors[(col + shiftAmount) % width]);
+		  }
+		  
+		  
+	  }
+	  
+  }
+  
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
   {
@@ -250,7 +275,7 @@ public class Picture extends SimplePicture
   {
 	  Pixel fromPixel = null;
 	  Pixel toPixel = null;
-	  Picture beard = new Picture("beard.jpeg");
+	  Picture beard = new Picture("Danny.jpg");
 	  Pixel [][] toPixels = this.getPixels2D();
 	  Pixel [][] fromPixels = beard.getPixels2D();
 	  int fromRow = 0;
@@ -274,22 +299,26 @@ public class Picture extends SimplePicture
 
   }
   
-  public void glitchFilter()
-  {
-	    Pixel[][] pixels = this.getPixels2D();
-	    Pixel leftPixel = null;
-	    Pixel rightPixel = null;
-	    int width = pixels[0].length;
-	    for (int row = 0; row < pixels.length; row++)
-	    {
-	      for (int col = 0; col < width / 5; col++)
-	      {
-	        leftPixel = pixels[row][col];
-	        rightPixel = pixels[row][width - 1 - col];
-	        rightPixel.setColor(leftPixel.getColor());
-	      }
-	    } 
-  }
+//  public void classFilter()
+//  {
+//	  Pixel[][] pixels = this.getPixels2D();
+//	    Pixel leftPixel = null;
+//	    Pixel rightPixel = null;
+//	    int width = pixels[0].length;
+//	    for (int row = 0; row < pixels.length; row++)
+//	    {
+//	      for (int col = 0; col < width / .1; col++)
+//	      {
+//	        leftPixel = pixels[row][col];
+//	        rightPixel = pixels[row][width - 1 - col];
+//	        rightPixel.setColor(leftPixel.getColor());
+//	      }
+//	      
+//	    }
+//	    
+//  }
+  
+  
   
   
   
