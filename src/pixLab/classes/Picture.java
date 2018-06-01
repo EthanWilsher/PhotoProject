@@ -136,49 +136,63 @@ public class Picture extends SimplePicture
 	  }
   }
   
-  public void glitchArt()
-  {
-	  Pixel [][] pixels = this.getPixels2D();
-	  int shiftAmount = (int) (.33 * pixels[0].length);
-	  int width = pixels[0].length;
-	  
-	  for (int row = 0; row < pixels.length; row++)
-	  {
-		  Color [] currentColors = new Color[pixels.length];
-		  
-		  for (int col = 0; col < pixels[0].length; col++)
-		  {
-			  currentColors[col] = pixels[row][col].getColor();	  
-		  }
-		  
-		  for (int col = 0; col < pixels[0].length; col++)
-		  {
-			  pixels[row][col].setColor(currentColors[(col + shiftAmount) % width]);
-		  }
-		  
-		  
-	  }
-	  
-	  int mirrorPoint = 276;
-	    Pixel leftPixel = null;
-	    Pixel rightPixel = null;
-	    int count = 0;
-	    
-	    // loop through the rows
-	    for (int row = 27; row < 97; row++)
-	    {
-	      // loop from 13 to just before the mirror point
-	      for (int col = 13; col < mirrorPoint; col++)
-	      {
-	        
-	        leftPixel = pixels[row][col];      
-	        rightPixel = pixels[row]                       
-	                         [mirrorPoint - col + mirrorPoint];
-	        rightPixel.setColor(leftPixel.getColor());
-	      }
-	    }
-	  
-  }
+//  public void glitchArt()
+//  {
+//	  Pixel [][] pixels = this.getPixels2D();
+//	  int shiftAmount = (int) (.33 * pixels[0].length);
+//	  int width = pixels[0].length;
+//	  for (int row = 0; row < pixels.length; row++)
+//	  {
+//		  Color [] currentColors = new Color[pixels.length];
+//		  
+//		  for (int col = 0; col < pixels[0].length; col++)
+//		  {
+//			  currentColors[col] = pixels[row][col].getColor();	  
+//		  }
+//		  
+//		  for (int col = 0; col < pixels[0].length; col++)
+//		  {
+//			  pixels[row][col].setColor(currentColors[(col + shiftAmount) % width]);
+//		  }  
+//	  }
+//	    int mirrorPoint = 276;
+//	    Pixel leftPixel = null;
+//	    Pixel rightPixel = null;
+//	    int count = 0;
+//	    Pixel [][] colors = this.getPixels2D();
+//	    // loop through the rows
+//	    for (int row = 27; row < 97; row++)
+//	    {
+//	      // loop from 13 to just before the mirror point
+//	      for (int col = 13; col < mirrorPoint; col++)
+//	      {
+//	        
+//	        leftPixel = pixels[row][col];      
+//	        rightPixel = pixels[row]                       
+//	                         [mirrorPoint - col + mirrorPoint];
+//	        rightPixel.setGreen(0);
+//	      }
+//	    }
+//	    for (int row = 300; row < 353; row++)
+//	    {
+//	    	  for(int col = 72; col < mirrorPoint; col++)
+//	    	  {
+//	    		  leftPixel = colors[row][col];
+//	    		  rightPixel = colors[row][mirrorPoint - col + mirrorPoint];
+//	    		  rightPixel.setGreen(0);
+//	    	  }
+//	    }
+//	    for (int row = 27; row < 97; row++)
+//	    {
+//	    	 for ( int col = 13; col < 25; col++)
+//	    	 {
+//	    		 leftPixel = colors[row][col];
+//	    		 rightPixel = colors[row][mirrorPoint - col + mirrorPoint];
+//	    		 rightPixel.setRed(0);
+//	    	 }
+//	    }
+//	  
+//  }
   
   public void addMessage(String message, int xPos, int yPos, Color color)
   {
@@ -301,18 +315,6 @@ public class Picture extends SimplePicture
     }
   }
   
-  
-  /* Main method for testing - each class in Java can have a main 
-   * method 
-   */
-  public static void main(String[] args) 
-  {
-    Picture beach = new Picture("beach.jpg");
-    beach.explore();
-    beach.zeroBlue();
-    beach.explore();
-  }
-  
   public void beardFilter(int startRow, int startCol)
   {
 	  Pixel fromPixel = null;
@@ -341,26 +343,35 @@ public class Picture extends SimplePicture
 
   }
   
+  public void classFilter()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  int width = pixels[0].length;
+	  int height = pixels.length;
+	  int border = (int) (0.05 * height);
+	  for (int row = border; row < (height - border); row++)
+	  {
+		  for (int col = border; col < (border + 20); col++)
+		  {
+			  pixels[row][col] = pixels[row][col + 20];
+		  }
+	  }
+  }
   
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  /* Main method for testing - each class in Java can have a main 
+   * method 
+   */
+  public static void main(String[] args) 
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.classFilter();
+    beach.addMessage("Hello", 230, 310, Color.BLUE);
+    new SimplePicture().write("EthanWilsher'sClassFilter.jpg");
+    beach.explore();
+  }
+
 } // this } is the end of class Picture, put all new methods before this
